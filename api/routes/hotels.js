@@ -5,6 +5,7 @@ import {
   deleteHotel,
   getHotel,
   getHotels,
+  countByCity,
 } from "../controllers/hotel.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
@@ -20,5 +21,7 @@ router.delete("/:id", verifyAdmin, deleteHotel);
 router.get("/:id", getHotel);
 //get All
 router.get("/", getHotels);
+router.get("/countByCity", countByCity);
+router.get("/countByType", getHotels);
 
 export default router;

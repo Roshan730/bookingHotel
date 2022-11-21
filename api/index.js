@@ -14,8 +14,8 @@ const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGOOSE);
     console.log("Connected to MongoDB");
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    throw err;
   }
 };
 
@@ -26,8 +26,7 @@ mongoose.connection.on("connected", () => {
   console.log("MongoDB connected");
 });
 
-//middleWares
-
+//middleWare
 app.use(cookieParser());
 app.use(express.json());
 
