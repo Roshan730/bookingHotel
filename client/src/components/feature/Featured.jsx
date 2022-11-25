@@ -1,42 +1,53 @@
 import React from "react";
+import useFetch from "../../hooks/useFetch";
 import "./Featured.css";
 
 const Featured = () => {
+  const { data, loading, error } = useFetch(
+    "/hotels/countByCity?cities=goa,indore,amritsar"
+  );
+  console.log(data);
   return (
     <div className="featured">
-      <div className="featuredItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/city/max500/957801.webp?k=a969e39bcd40cdcc21786ba92826063e3cb09bf307bcfeac2aa392b838e9b7a5&o="
-          alt=""
-          className="featuredImg"
-        />
-        <div className="featuredTitle">
-          <h1>Dublin</h1>
-          <h2>location</h2>
-        </div>
-      </div>
-      <div className="featuredItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/city/max500/690334.webp?k=b99df435f06a15a1568ddd5f55d239507c0156985577681ab91274f917af6dbb&o="
-          alt=""
-          className="featuredImg"
-        />
-        <div className="featuredTitle">
-          <h1>Madrid</h1>
-          <h2>location</h2>
-        </div>
-      </div>
-      <div className="featuredItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/city/max500/689422.webp?k=2595c93e7e067b9ba95f90713f80ba6e5fa88a66e6e55600bd27a5128808fdf2&o="
-          alt=""
-          className="featuredImg"
-        />
-        <div className="featuredTitle">
-          <h1>London</h1>
-          <h2>location</h2>
-        </div>
-      </div>
+      {loading ? (
+        "Loading please wait..."
+      ) : (
+        <>
+          <div className="featuredItem">
+            <img
+              src="https://static.toiimg.com/photo/msid-88270242,width-96,height-65.cms"
+              alt=""
+              className="featuredImg"
+            />
+            <div className="featuredTitle">
+              <h1>Amritsar</h1>
+              <h2>{data[0]} properties</h2>
+            </div>
+          </div>
+          <div className="featuredItem">
+            <img
+              src="https://media.istockphoto.com/id/515708494/photo/mahatma-gandhi-hall.jpg?s=612x612&w=0&k=20&c=0r0tu3VAbZdmf4RlwI3Q-xZjiMa4abSfsvnDxHVlGCo="
+              alt=""
+              className="featuredImg"
+            />
+            <div className="featuredTitle">
+              <h1>Indore</h1>
+              <h2>{data[1]} properties</h2>
+            </div>
+          </div>
+          <div className="featuredItem">
+            <img
+              src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29hfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+              alt=""
+              className="featuredImg"
+            />
+            <div className="featuredTitle">
+              <h1>Goa</h1>
+              <h2>{data[2]} properties</h2>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
